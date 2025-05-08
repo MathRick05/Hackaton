@@ -41,8 +41,10 @@ public class Artigo {
     private StatusArtigo status;
 
     public enum StatusArtigo {
+        SUBMETIDO,
         EM_AVALIACAO,
         REVISAO_SOLICITADA,
+        EM_REVISAO,
         APROVADO,
         REJEITADO
     }
@@ -79,12 +81,12 @@ public class Artigo {
         this.palavrasChave = palavrasChave;
     }
 
-    public Enum getAreaTematica() {
+    public AreaAtuacao getAreaTematica() {
         return areaTematica;
     }
 
-    public void setAreaTematica(Enum areaTematica) {
-        this.areaTematica = areaTematica;
+    public void setAreaTematica(AreaAtuacao areaTematica) {
+        this.areaTematica = (AreaAtuacao) areaTematica;
     }
 
     public String getArquivoInicial() {

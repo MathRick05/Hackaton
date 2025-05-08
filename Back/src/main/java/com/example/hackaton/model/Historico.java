@@ -11,10 +11,6 @@ public class Historico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "evento_id", nullable = false)
-    private Evento evento;
-
     @Column(nullable = false)
     private String arquivoUrl;
 
@@ -30,20 +26,22 @@ public class Historico {
         HTML
     }
 
+    @ManyToOne
+    @JoinColumn(name = "artigo_id")
+    private Artigo artigo;
+
+    @Column
+    private String descricao;
+
+    @Column
+    private LocalDate dataAcao;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
     }
 
     public String getArquivoUrl() {
@@ -70,5 +68,26 @@ public class Historico {
         this.formato = formato;
     }
 
+    public Artigo getArtigo() {
+        return artigo;
+    }
+    public void setArtigo(Artigo artigo) {
+        this.artigo = artigo;
+    }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public LocalDate getDataAcao() {
+        return dataAcao;
+    }
+    public void setDataAcao(LocalDate dataAcao) {
+        this.dataAcao = dataAcao;
+
+    }
 }
