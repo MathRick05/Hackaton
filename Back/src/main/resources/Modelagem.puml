@@ -1,0 +1,97 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class Usuario {
+  - id : int
+  - nome : String
+  - email : String
+  - senhaHash : String
+  - tipo : Enum (Autor, Avaliador, Coordenador)
+  - areaAtuacao : String
+  - afiliacao : String
+  + autenticar() : boolean
+  + podeSubmeter() : boolean
+  + podeAvaliar() : boolean
+}
+
+class Evento {
+  - id : int
+  - nome : String
+  - descricao : String
+  - bannerUrl : String
+  - dataInicio : Date
+  - dataFim : Date
+  - prazoSubmissaoInicial : Date
+  - prazoAvaliacao : Date
+  - prazoSubmissaoFinal : Date
+  - local : String
+  - organizador : Usuario
+  + estaAbertoParaSubmissoes() : boolean
+}
+
+class Artigo {
+  - id : int
+  - titulo : String
+  - resumo : String
+  - palavrasChave : List<String>
+  - areaTematica : String
+  - arquivoInicial : String
+  - arquivoFinal : String
+  - status : Enum (Em Avaliacao, Revisao Solicitada, Aprovado, Rejeitado)
+  - autores : List<Usuario>
+  - evento : Evento
+  + enviarParaAvaliacao()
+  + corrigir()
+  + publicar()
+}
+
+class Avaliacao {
+  - id : int
+  - artigo : Artigo
+  - avaliador : Usuario
+  - metodo : Enum (DoubleBlind)
+  - nota : double
+  - parecer : String
+  - comentarioAutor : String
+  - comentarioCoordenador : String
+  - recomendacao : Enum (Aprovar, Revisar, Rejeitar)
+  + registrarParecer()
+}
+
+class RevisaoArtigo {
+  - id : int
+  - artigo : Artigo
+  - versao : int
+  - tipo : Enum (Inicial, Revisada)
+  - arquivoPdf : String
+  - dataEnvio : Date
+  - observacao : String
+}
+
+class Publicacao {
+  - id : int
+  - artigo : Artigo
+  - urlPublicacao : String
+  - doi : String
+  - dataPublicacao : Date
+}
+
+class Anais {
+  - id : int
+  - evento : Evento
+  - formato : Enum (PDF, HTML)
+  - arquivoUrl : String
+  - dataGeracao : Date
+}
+
+Usuario "1" -- "0..*" Evento : organiza >
+Usuario "1" -- "0..*" Artigo : submete >
+Artigo "1" -- "0..*" Avaliacao : recebe >
+Usuario "1" -- "0..*" Avaliacao : realiza >
+Artigo "1" -- "0..*" RevisaoArtigo : possui >
+Artigo "1" -- "0..1" Publicacao : vira >
+Evento "1" -- "0..1" Anais : gera >
+
+@enduml
