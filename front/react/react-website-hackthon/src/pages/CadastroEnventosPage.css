@@ -1,0 +1,195 @@
+/* src/pages/CadastroEventoPage.css */
+
+.cadastro-evento-page {
+    /* Herda do .main-container no App.jsx ou define aqui se necessário */
+}
+
+.cadastro-evento-container {
+    max-width: 800px;
+    margin: calc(var(--espacamento-base) * 2.5) auto;
+    padding: calc(var(--espacamento-base) * 2) calc(var(--espacamento-base) * 2.5);
+    background-color: var(--cor-fundo-elemento);
+    border-radius: var(--border-radius-grande);
+    box-shadow: var(--sombra-media);
+
+}
+
+.cadastro-evento-container h1 {
+    text-align: center;
+    color: var(--cor-texto-principal);
+    margin-bottom: calc(var(--espacamento-base) * 2);
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Estilização para fieldset e legend */
+.form-fieldset {
+    border: 1px solid var(--cor-input-borda, #e1e4e8);
+    border-radius: var(--border-radius-padrao);
+    padding: calc(var(--espacamento-base) * 1.5);
+    margin-bottom: calc(var(--espacamento-base) * 2);
+}
+
+.fieldset-legend {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    /* Destaque para a legenda da seção */
+    padding: 0 calc(var(--espacamento-base) * 0.5);
+    margin-left: var(--espacamento-base);
+    /* Alinha com o padding do fieldset */
+}
+
+.cadastro-evento-form .form-group {
+    margin-bottom: calc(var(--espacamento-base) * 1.25);
+    border-radius: var(--border-radius-grande);
+}
+
+.cadastro-evento-form .form-group label {
+    display: block;
+    margin-bottom: calc(var(--espacamento-base) * 0.4);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+/* Estilo para grupo de checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--espacamento-base) * 0.5);
+    margin-top: calc(var(--espacamento-base) * 0.5);
+    /* Ajuste se necessário */
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    /* Checkbox não ocupa largura total */
+    margin-right: calc(var(--espacamento-base) * 0.3);
+    /* Estilização customizada de checkbox pode ser complexa e variar;
+       usando o padrão do navegador por simplicidade aqui. */
+    accent-color: var(--cor-primaria);
+    /* Colore o checkbox padrão (navegadores modernos) */
+    transform: scale(1.1);
+    /* Aumenta um pouco o checkbox */
+}
+
+.checkbox-group .checkbox-label {
+    font-weight: normal;
+    /* Label do checkbox pode ser normal */
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    /* Remove margem inferior para alinhar com o checkbox */
+    color: var(--cor-texto-principal);
+}
+
+
+/* A classe .form-control do global.css já estiliza os inputs, textarea.
+     Ajustes finos já feitos no CSS anterior "bonito" podem ser mantidos.
+     Ex: padding, placeholder color, focus. */
+.cadastro-evento-form .form-control {
+    background-color: var(--cor-input-fundo, #f7f7f9);
+    border: 1px solid var(--cor-input-borda, #e1e4e8);
+    padding: calc(var(--espacamento-base) * 0.7) calc(var(--espacamento-base) * 0.9);
+    font-size: 0.95rem;
+    /* ... outros estilos que você gostou da versão anterior ... */
+}
+
+.cadastro-evento-form .form-control::placeholder {
+    color: var(--cor-input-placeholder, #a0aec0);
+}
+
+.cadastro-evento-form .form-control:focus {
+    border-color: var(--cor-input-foco-borda, #007bff);
+    box-shadow: 0 0 0 0.2rem var(--cor-input-foco-sombra, rgba(0, 123, 255, .25));
+}
+
+
+.cadastro-evento-form .form-group small {
+    display: block;
+    margin-top: calc(var(--espacamento-base) * 0.3);
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario);
+}
+
+.cadastro-evento-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--espacamento-base) * 1.5);
+    margin-bottom: calc(var(--espacamento-base) * 1.25);
+    /* Mantém a margem da linha inteira */
+}
+
+.cadastro-evento-form .form-row .form-group {
+    flex: 1 1 calc(50% - (var(--espacamento-base) * 0.75));
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+/* Botão de Submissão */
+.submit-button {
+    /* Herda de button ou .button do global.css */
+    width: 100%;
+    /* Ocupa toda a largura dentro do seu container */
+    padding: calc(var(--espacamento-base) * 0.85) calc(var(--espacamento-base) * 1.5);
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--cor-sucesso);
+    /* Usar cor de sucesso para salvar */
+    border-color: var(--cor-sucesso);
+    margin-top: var(--espacamento-base);
+}
+
+.submit-button:hover {
+    background-color: #1e7e34;
+    /* Sucesso hover */
+    border-color: #1c7430;
+}
+
+/* Mensagens de Feedback */
+.feedback-message {
+    padding: var(--espacamento-base);
+    margin-bottom: calc(var(--espacamento-base) * 1.5);
+    border-radius: var(--border-radius-padrao);
+    text-align: center;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.feedback-message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
+.feedback-message.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cadastro-evento-container {
+        margin: var(--espacamento-base);
+        padding: var(--espacamento-base) calc(var(--espacamento-base) * 1.2);
+    }
+
+    .fieldset-legend {
+        font-size: 1.1rem;
+    }
+
+    .cadastro-evento-form .form-row {
+        gap: 0;
+    }
+
+    .cadastro-evento-form .form-row .form-group {
+        flex-basis: 100%;
+        margin-bottom: calc(var(--espacamento-base) * 1.25);
+    }
+
+    .cadastro-evento-form .form-row .form-group:last-child {
+        margin-bottom: 0;
+    }
+}

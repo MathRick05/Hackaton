@@ -1,0 +1,192 @@
+/* src/global.css */
+
+/* --- :root para Variáveis CSS --- */
+:root {
+  --cor-primaria: #007bff;
+  --cor-primaria-hover: #0056b3;
+  --cor-secundaria: #6c757d;
+  --cor-sucesso: #28a745;
+  --cor-perigo: #dc3545;
+  --cor-aviso: #ffc107;
+  --cor-info: #17a2b8;
+
+  --cor-texto-principal: #212529; /* Um preto mais suave */
+  --cor-texto-secundario: #6c757d;
+  --cor-texto-links: var(--cor-primaria);
+  --cor-texto-branco: #ffffff;
+
+  --cor-fundo-pagina: #f8f9fa;
+  --cor-fundo-elemento: #ffffff; /* Para cards, inputs, etc. */
+  --cor-borda: #dee2e6; /* Cinza claro para bordas */
+
+  --familia-fonte-principal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --familia-fonte-titulos: var(--familia-fonte-principal); /* Mesma por padrão */
+
+  --espacamento-base: 1rem; /* ~16px */
+  --border-radius-padrao: 0.25rem; /* ~4px */
+  --border-radius-grande: 0.5rem; /* ~8px */
+
+  --largura-maxima-container: 1140px; /* Comum para containers bootstrap-like */
+
+  --sombra-suave: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --sombra-media: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* --- Reset Básico / Normalização --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--familia-fonte-principal);
+  line-height: 1.6;
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo-pagina);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased; /* Melhora renderização de fontes */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Tipografia Base --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--familia-fonte-titulos);
+  color: var(--cor-texto-principal);
+  margin-top: 0;
+  margin-bottom: calc(var(--espacamento-base) * 0.75);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--espacamento-base);
+}
+
+a {
+  color: var(--cor-texto-links);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--cor-primaria-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+
+}
+
+/* --- Container Principal --- */
+.main-container,
+.main-content {
+  width: 100%;
+  max-width: var(--largura-maxima-container);
+  margin-left: auto;
+  margin-right: auto;
+  padding: calc(var(--espacamento-base) * 1.5);
+  flex-grow: 1;
+}
+
+/* --- Estilos de Formulário Globais (Base) --- */
+.form-group {
+  margin-bottom: var(--espacamento-base);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: calc(var(--espacamento-base) / 2);
+  font-weight: 500;
+  color: var(--cor-texto-secundario);
+}
+
+.form-control { /* Classe genérica para inputs, textareas, selects */
+  display: block;
+  width: 100%;
+  padding: calc(var(--espacamento-base) * 0.65);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo-elemento);
+  background-clip: padding-box;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--border-radius-padrao);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo-elemento);
+  border-color: var(--cor-primaria); /* Um pouco mais claro para o foco */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(var(--cor-primaria), 0.25);
+}
+
+textarea.form-control {
+  min-height: calc(var(--espacamento-base) * 6); /* ~96px */
+  resize: vertical;
+}
+
+/* --- Botão Padrão Global --- */
+.button, button {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--cor-texto-branco);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  padding: calc(var(--espacamento-base) * 0.65) calc(var(--espacamento-base) * 1.2);
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: var(--border-radius-padrao);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.button:hover, button:hover {
+  color: var(--cor-texto-branco);
+  background-color: var(--cor-primaria-hover);
+  border-color: var(--cor-primaria-hover);
+}
+
+.button:focus, button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(var(--cor-primaria), 0.5);
+}
+
+.button:disabled, button:disabled {
+  background-color: var(--cor-secundaria);
+  border-color: var(--cor-secundaria);
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Classes Utilitárias */
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: var(--espacamento-base) * 0.25 !important; }
+.mb-2 { margin-bottom: var(--espacamento-base) * 0.5 !important; }
+.mb-3 { margin-bottom: var(--espacamento-base) !important; }
+.mt-1 { margin-top: var(--espacamento-base) * 0.25 !important; }
+.mt-2 { margin-top: var(--espacamento-base) * 0.5 !important; }
+.mt-3 { margin-top: var(--espacamento-base) !important; }

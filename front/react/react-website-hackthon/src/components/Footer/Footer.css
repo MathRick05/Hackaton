@@ -1,0 +1,64 @@
+.footer {
+    background-color: #0a192f; /* Cor de fundo do footer (tom de azul escuro) */
+    color: #ccd6f6; /* Cor do texto principal do footer */
+    padding: 40px 32px;
+    display: flex;
+    justify-content: space-around; /* Distribui o espaço igualmente entre os links e o contato */
+    align-items: flex-start; /* Alinha os itens verticalmente no topo */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+    gap: 40px; /* Adiciona um espaçamento entre os blocos (links e contato) */
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* O margin-bottom foi removido, pois o gap no footer já cuida do espaçamento */
+  }
+  
+  .footer-links a {
+    color: #ccd6f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #64ffda; /* Cor ao passar o mouse */
+  }
+  
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre o título e os itens de contato */
+  }
+  
+  .footer-contact h3 {
+    color: #64ffda; /* Cor do título "Fale Conosco" */
+    margin-bottom: 0; /* Reduzi a margem inferior, pois o gap agora espaça */
+  }
+  
+  .footer-contact .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Adicionado um pequeno espaçamento entre os itens de contato */
+  }
+  
+  .footer-contact .contact-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #64ffda;
+  }
+  
+  .footer-contact span {
+    margin-right: 5px;
+  }
+  
+  .footer-contact a {
+    color: #ccd6f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-contact a:hover {
+    color: #64ffda;
+  }

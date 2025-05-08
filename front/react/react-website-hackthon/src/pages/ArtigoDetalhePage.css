@@ -1,0 +1,243 @@
+/* src/pages/ArtigoDetalhePage.css */
+
+.artigo-detalhe-page {
+    /* Pode usar .main-container do global.css se aplicado no App.jsx */
+    max-width: 850px;
+    /* Largura ideal para leitura */
+    margin: calc(var(--espacamento-base, 1rem) * 2) auto;
+    padding: var(--espacamento-base, 1rem);
+}
+
+.artigo-container {
+    background-color: var(--cor-fundo-elemento, #fff);
+    padding: calc(var(--espacamento-base, 1rem) * 2.5);
+    border-radius: var(--border-radius-padrao);
+    box-shadow: var(--sombra-suave);
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 2.5);
+}
+
+.artigo-header .back-link {
+    display: inline-block;
+    margin-bottom: var(--espacamento-base, 1rem);
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+}
+
+.artigo-header .back-link:hover {
+    color: var(--cor-primaria);
+}
+
+.artigo-header h1 {
+    font-size: 2.4rem;
+    /* Título grande e destacado */
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 0.75);
+    line-height: 1.2;
+    color: var(--cor-texto-principal);
+}
+
+.artigo-meta-detalhe {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: calc(var(--espacamento-base, 1rem) * 0.6);
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 1.5);
+    padding-bottom: var(--espacamento-base, 1rem);
+    border-bottom: 1px solid var(--cor-borda, #eee);
+}
+
+.author-avatar-detalhe {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: calc(var(--espacamento-base, 1rem) * 0.3);
+}
+
+.artigo-meta-detalhe .separator {
+    color: var(--cor-borda);
+}
+
+.category-tag-detalhe {
+    display: inline-block;
+    padding: calc(var(--espacamento-base, 1rem) * 0.15) calc(var(--espacamento-base, 1rem) * 0.5);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--cor-texto-branco);
+    border-radius: var(--border-radius-padrao);
+    text-transform: uppercase;
+}
+
+
+.artigo-imagem-principal {
+    width: 100%;
+    max-height: 450px;
+    /* Altura máxima para a imagem principal */
+    object-fit: cover;
+    border-radius: var(--border-radius-padrao);
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 2);
+}
+
+.artigo-body {
+    font-size: 1.1rem;
+    /* Tamanho bom para leitura */
+    line-height: 1.8;
+    /* Altura de linha confortável */
+    color: var(--cor-texto-principal);
+}
+
+.artigo-body p {
+    /* Estilo para parágrafos dentro do body se não usar dangerouslySetInnerHTML */
+    margin-bottom: var(--espacamento-base);
+}
+
+/* --- Seção de Avaliação --- */
+.avaliacao-section {
+    background-color: var(--cor-fundo-elemento, #fff);
+    padding: var(--espacamento-base, 1rem) calc(var(--espacamento-base, 1rem) * 1.5);
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 2);
+    border-radius: var(--border-radius-padrao);
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+}
+
+.avaliacao-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: var(--espacamento-base, 1rem);
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.star-rating label {
+    /* Contém o input invisível e a estrela */
+    cursor: pointer;
+}
+
+.star-rating .star {
+    color: #e4e5e9;
+    /* Cor da estrela vazia/não selecionada */
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating .rating-value {
+    margin-left: var(--espacamento-base);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cor-texto-secundario);
+    min-width: 50px;
+    /* Para evitar que o layout pule */
+    display: inline-block;
+}
+
+
+/* --- Seção de Comentários --- */
+.comentarios-section {
+    margin-top: calc(var(--espacamento-base, 1rem) * 2);
+}
+
+.comentarios-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 1.5);
+    border-bottom: 2px solid var(--cor-primaria);
+    padding-bottom: calc(var(--espacamento-base, 1rem) * 0.5);
+    display: inline-block;
+    /* Faz a borda ficar só no texto */
+}
+
+.comentarios-list {
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 2);
+}
+
+.comentario-item {
+    background-color: var(--cor-fundo-elemento);
+    padding: var(--espacamento-base, 1rem);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: var(--border-radius-padrao);
+    margin-bottom: var(--espacamento-base, 1rem);
+    box-shadow: var(--sombra-suave);
+}
+
+.comentario-text {
+    margin-bottom: calc(var(--espacamento-base, 1rem) * 0.5);
+    line-height: 1.5;
+    color: var(--cor-texto-principal);
+}
+
+.comentario-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario);
+    padding-top: calc(var(--espacamento-base, 1rem) * 0.5);
+    border-top: 1px dashed var(--cor-borda, #eee);
+}
+
+.comentario-meta strong {
+    color: var(--cor-texto-principal);
+    font-weight: 600;
+}
+
+/* Formulário de Comentário */
+.comentario-form {
+    background-color: var(--cor-fundo-elemento);
+    padding: calc(var(--espacamento-base, 1rem) * 1.5);
+    border-radius: var(--border-radius-padrao);
+    box-shadow: var(--sombra-suave);
+}
+
+.comentario-form h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--espacamento-base, 1rem);
+}
+
+.comentario-form textarea {
+    /* Herda de .form-control do global.css */
+    min-height: 80px;
+    margin-bottom: var(--espacamento-base, 1rem);
+}
+
+.comentario-submit-button {
+    /* Herda de .button ou button do global.css */
+    padding: calc(var(--espacamento-base, 1rem) * 0.6) calc(var(--espacamento-base, 1rem) * 1.2);
+    font-size: 0.95rem;
+}
+
+.loading-message,
+.error-message {
+    text-align: center;
+    padding: var(--espacamento-base) * 3;
+    font-size: 1.2em;
+    color: var(--cor-texto-secundario);
+}
+
+.error-message {
+    color: var(--cor-perigo);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .artigo-detalhe-page {
+        margin: var(--espacamento-base) auto;
+    }
+
+    .artigo-container {
+        padding: var(--espacamento-base);
+    }
+
+    .artigo-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .artigo-meta-detalhe {
+        font-size: 0.8rem;
+    }
+
+    .artigo-body {
+        font-size: 1rem;
+    }
+}
