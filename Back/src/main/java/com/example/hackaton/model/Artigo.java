@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-import jakarta.persistence.*;
-import java.util.List;
-
 @Entity
 @Table(name = "artigos")
 public class Artigo {
@@ -26,8 +23,8 @@ public class Artigo {
     @Column(name = "palavra")
     private List<String> palavrasChave;
 
-    @Column(nullable = false)
-    private String areaTematica;
+    @Enumerated(EnumType.STRING)
+    private AreaAtuacao areaTematica;
 
     @Column(nullable = false)
     private String arquivoInicial;
@@ -82,11 +79,11 @@ public class Artigo {
         this.palavrasChave = palavrasChave;
     }
 
-    public String getAreaTematica() {
+    public Enum getAreaTematica() {
         return areaTematica;
     }
 
-    public void setAreaTematica(String areaTematica) {
+    public void setAreaTematica(Enum areaTematica) {
         this.areaTematica = areaTematica;
     }
 
