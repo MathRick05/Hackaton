@@ -7,8 +7,10 @@ import com.example.hackaton.repository.ArtigoRepository;
 import com.example.hackaton.repository.HistoricoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 @Service
 public class ArtigoService {
@@ -22,6 +24,7 @@ public class ArtigoService {
         this.historicoRepository = historicoRepository;
     }
 
+    @Transactional
     public Artigo criarArtigo(Artigo artigo) {
         validarCriacao(artigo);
         return artigoRepository.save(artigo);
@@ -29,14 +32,18 @@ public class ArtigoService {
 
     public void validarCriacao(Artigo artigo) {
         if (artigo.getPalavrasChave() == null || artigo.getPalavrasChave().size() < 2) {
-            throw new IllegalArgumentException("O artigo tem menos que 2 palavras-chave");
+            throw new IllegalArgumentException("O artigo precisa ter pelo menos 2 palavras-chave.");
+        }
+        if (new HashSet<>(artigo.getPalavrasChave()).size() != artigo.getPalavrasChave().size()) {
+            throw new IllegalArgumentException("As palavras-chave não podem ser duplicadas.");
         }
         artigo.setStatus(Artigo.StatusArtigo.EM_AVALIACAO);
     }
 
+    @Transactional
     public void validarAtualizacao(Artigo artigoExistente, Artigo novosDados) {
         if (artigoExistente.getStatus() == Artigo.StatusArtigo.APROVADO) {
-            throw new IllegalStateException("Artigos aprovados não podem ser atualizados");
+            throw new IllegalStateException("Artigos aprovados não podem ser atualizados.");
         }
         artigoExistente.setTitulo(novosDados.getTitulo());
         artigoExistente.setStatus(novosDados.getStatus());
@@ -46,21 +53,25 @@ public class ArtigoService {
         artigoExistente.setAreaTematica(novosDados.getAreaTematica());
     }
 
+    @Transactional
     public void aprovaArtigo(Artigo artigo) {
         if (artigo.getStatus() != Artigo.StatusArtigo.REVISAO_SOLICITADA) {
-            throw new IllegalStateException("O artigo só pode ser aceito após revisão");
+            throw new IllegalStateException("O artigo só pode ser aceito após revisão.");
         }
         artigo.setStatus(Artigo.StatusArtigo.APROVADO);
     }
 
+    @Transactional
     public void rejeitarArtigo(Artigo artigo) {
         artigo.setStatus(Artigo.StatusArtigo.REJEITADO);
     }
 
     public ArtigoAnonimoDTO getArtigoAnonimo(Long id) {
-        return ArtigoRepository.findArtigoAnonimoById(id);
+        return ArtigoRepository.findArtigoAnonimoById(id);  // Usando a instância do artigoRepository
     }
 
+
+    @Transactional
     public String solicitarRevisao(Long artigoId) {
         Artigo artigo = artigoRepository.findById(artigoId)
                 .orElseThrow(() -> new RuntimeException("Artigo não encontrado"));
@@ -75,10 +86,9 @@ public class ArtigoService {
         Historico historico = new Historico();
         historico.setArtigo(artigo);
         historico.setDataAcao(LocalDate.now());
-        historico.setDescricao("Revisão solicitada para o artigo.");
+        historico.setDescricao("Revisão solicitada para o artigo '" + artigo.getTitulo() + "'.");
         historicoRepository.save(historico);
 
         return "Revisão solicitada com sucesso.";
     }
-
 }

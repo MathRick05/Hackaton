@@ -18,7 +18,7 @@ public class AutorService {
     }
 
     private void validarEmail(String email) {
-        String regex = "^[\\\\w.-]+@([\\\\w-]+\\\\.)+[\\\\w-]{2,4}$";
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         if (email == null || !email.matches(regex)){
             throw new IllegalArgumentException("Email-Invalido");
         }

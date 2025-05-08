@@ -31,9 +31,11 @@ public class ArtigoController {
         return ResponseEntity.ok(artigoService.getArtigoAnonimo(id));
     }
     @PostMapping
-    public ResponseEntity<Artigo> criar(@RequestBody Artigo artigo) {
-        Artigo novo = artigoService.criarArtigo(artigo);
-        return ResponseEntity.ok(novo);
+    public ResponseEntity<Artigo> criarArtigo(@RequestBody Artigo artigo) {
+        artigo.setId(null);
+        artigo.setStatus(Artigo.StatusArtigo.SUBMETIDO);
+        Artigo salvo = artigoRepository.save(artigo);
+        return ResponseEntity.ok(salvo);
     }
 
     @PutMapping("/{id}/status")
@@ -49,5 +51,17 @@ public class ArtigoController {
 
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarArtigo(@PathVariable Long id) {
+        Optional<Artigo> artigo = artigoRepository.findById(id);
+        if (artigo.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        artigoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

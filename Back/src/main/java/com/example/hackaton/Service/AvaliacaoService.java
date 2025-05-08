@@ -1,4 +1,4 @@
-package com.example.hackaton.service;
+package com.example.hackaton.Service;
 
 import com.example.hackaton.model.Avaliacao;
 import com.example.hackaton.model.Avaliacao.Recomendacao;
@@ -6,6 +6,7 @@ import com.example.hackaton.model.Avaliacao.Status;
 import com.example.hackaton.repository.AvaliacaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,10 +22,39 @@ public class AvaliacaoService {
         validarNota(avaliacao.getNota());
         validarParecer(avaliacao.getParecer());
         verificarDuplicidade(avaliacao.getArtigo().getId(), avaliacao.getAvaliador().getId());
-
         definirStatusPorRecomendacao(avaliacao);
-
         return avaliacaoRepository.save(avaliacao);
+    }
+
+    public List<Avaliacao> listarTodas() {
+        return avaliacaoRepository.findAll();
+    }
+
+    public Avaliacao buscarPorId(int id) {
+        return avaliacaoRepository.findById(id).orElse(null);
+    }
+
+    public Avaliacao atualizar(int id, Avaliacao avaliacaoAtualizada) {
+        Optional<Avaliacao> existente = avaliacaoRepository.findById(id);
+        if (existente.isEmpty()) return null;
+
+        Avaliacao original = existente.get();
+        original.setNota(avaliacaoAtualizada.getNota());
+        original.setParecer(avaliacaoAtualizada.getParecer());
+        original.setComentarioAutor(avaliacaoAtualizada.getComentarioAutor());
+        original.setComentarioCoordenador(avaliacaoAtualizada.getComentarioCoordenador());
+        original.setMetodo(avaliacaoAtualizada.getMetodo());
+        original.setRecomendacao(avaliacaoAtualizada.getRecomendacao());
+        definirStatusPorRecomendacao(original);
+
+        return avaliacaoRepository.save(original);
+    }
+
+    public boolean deletar(int id) {
+        Optional<Avaliacao> existente = avaliacaoRepository.findById(id);
+        if (existente.isEmpty()) return false;
+        avaliacaoRepository.deleteById(id);
+        return true;
     }
 
     private void validarNota(double nota) {
